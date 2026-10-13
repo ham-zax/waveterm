@@ -97,12 +97,14 @@ const config = {
     },
     win: {
         target: ["nsis", "msi", "zip"],
-        signtoolOptions: windowsShouldSign && {
-            signingHashAlgorithms: ["sha256"],
-            publisherName: "Command Line Inc",
-            certificateSubjectName: "Command Line Inc",
-            certificateSha1: process.env.SM_CODE_SIGNING_CERT_SHA1_HASH,
-        },
+        signtoolOptions: windowsShouldSign
+            ? {
+                  signingHashAlgorithms: ["sha256"],
+                  publisherName: "Command Line Inc",
+                  certificateSubjectName: "Command Line Inc",
+                  certificateSha1: process.env.SM_CODE_SIGNING_CERT_SHA1_HASH,
+              }
+            : undefined,
     },
     appImage: {
         license: "LICENSE",
